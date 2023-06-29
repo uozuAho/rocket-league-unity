@@ -179,6 +179,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 340941649726621256, guid: a8cd889f040d09e4ab24b743b9d4258d, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: bb3e286ed3ce76441b58e88ebb16c3e1, type: 2}
     - target: {fileID: 8027167575779226838, guid: a8cd889f040d09e4ab24b743b9d4258d, type: 3}
       propertyPath: m_Name
       value: WheelBR
@@ -254,6 +258,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 340941649726621256, guid: a8cd889f040d09e4ab24b743b9d4258d, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: bb3e286ed3ce76441b58e88ebb16c3e1, type: 2}
     - target: {fileID: 8027167575779226838, guid: a8cd889f040d09e4ab24b743b9d4258d, type: 3}
       propertyPath: m_Name
       value: WheelBL
@@ -464,7 +472,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 533089218}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.31945866, y: 1, z: -9.19}
+  m_LocalPosition: {x: 0.31945866, y: 1, z: 10.11}
   m_LocalScale: {x: 1.9369, y: 1.9369, z: 1.9369}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -523,7 +531,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 606782522}
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.248, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -536,7 +544,7 @@ Transform:
   - {fileID: 963194228}
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &606782524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -549,9 +557,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4a3199a070002e46aa8a9ab4aa37e90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  forwardFriction: 10000
+  sidewaysFriction: 2000
   accelForce: 50000
   turnForce: 2000
+  groundTurnForce: 4000
   jumpForce: 500
+  speed: 0
 --- !u!54 &606782526
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -699,7 +711,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 763072740}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: bb3e286ed3ce76441b58e88ebb16c3e1, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1114,6 +1126,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 340941649726621256, guid: a8cd889f040d09e4ab24b743b9d4258d, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: bb3e286ed3ce76441b58e88ebb16c3e1, type: 2}
     - target: {fileID: 8027167575779226838, guid: a8cd889f040d09e4ab24b743b9d4258d, type: 3}
       propertyPath: m_Name
       value: WheelFR
@@ -1258,6 +1274,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 340941649726621256, guid: a8cd889f040d09e4ab24b743b9d4258d, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: bb3e286ed3ce76441b58e88ebb16c3e1, type: 2}
     - target: {fileID: 8027167575779226838, guid: a8cd889f040d09e4ab24b743b9d4258d, type: 3}
       propertyPath: m_Name
       value: WheelFL
