@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\WheelSteerAngle.cs" />
      <Compile Include="Assets\Scripts\CamPlayerFollower.cs" />
      <Compile Include="Assets\Scripts\WheelStudy\WCCarController.cs" />
+     <Compile Include="Assets\Scripts\WheelStudy\CustomCarControl.cs" />
      <Compile Include="Assets\Scripts\PlayerControl.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets\Materials" />
@@ -693,6 +694,9 @@
      <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
      <HintPath>C:\woz\unity\RocketLeague\Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
      </Reference>
+     <Reference Include="com.unity.cinemachine.editor">
+     <HintPath>C:\woz\unity\RocketLeague\Library\ScriptAssemblies\com.unity.cinemachine.editor.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.Performance.Profile-Analyzer.Editor">
      <HintPath>C:\woz\unity\RocketLeague\Library\ScriptAssemblies\Unity.Performance.Profile-Analyzer.Editor.dll</HintPath>
      </Reference>
@@ -740,6 +744,9 @@
      </Reference>
      <Reference Include="Unity.VSCode.Editor">
      <HintPath>C:\woz\unity\RocketLeague\Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Cinemachine">
+     <HintPath>C:\woz\unity\RocketLeague\Library\ScriptAssemblies\Cinemachine.dll</HintPath>
      </Reference>
      <Reference Include="Unity.VisualScripting.Flow">
      <HintPath>C:\woz\unity\RocketLeague\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
