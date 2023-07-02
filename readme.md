@@ -2,6 +2,10 @@
 
 # doing
 - do custom car physics
+  - reduce in air friction
+  - dont steer or accel in air
+  - only one double jump
+  - prevent bouncing when hitting the ground on wheels
 
 # todo
 - do arcade car
