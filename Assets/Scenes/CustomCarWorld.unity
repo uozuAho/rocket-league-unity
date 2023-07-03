@@ -1269,8 +1269,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 148a46d7c892a8142b0ccbc985dc3ad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  accelPower: 10
+  accelPower: 30
   forwardFriction: 1
+  sidewaysFriction: 5
+  jumpForce: 10
+  turnSpeed: 1
 --- !u!1 &1804367686
 GameObject:
   m_ObjectHideFlags: 0
