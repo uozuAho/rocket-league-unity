@@ -2,8 +2,16 @@
 
 # doing
 - do custom car physics
-  - reduce in air friction
-  - dont steer or accel in air
+  - follower cam
+    - get behaviour from RL: follower + ball cam
+      - follower cam: keep car in same spot on screen, slightly below middle.
+        While car is on ground, stay behind car. When car not on ground, stay
+        at same horizontal rotation as when car left the ground.
+      - ball cam: always point at ball. Car should always be in same spot
+        on screen: slightly below middle
+  - in air yaw
+    - max angular speed
+    - faster accel
   - only one double jump
   - prevent bouncing when hitting the ground on wheels
 
