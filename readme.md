@@ -3,8 +3,10 @@
 # doing
 - do custom car physics
   - follower cam
-    - get behaviour from RL: follower + ball cam
-      - follower cam: keep car in same spot on screen, slightly below middle.
+    - do follower cam
+      - don't rotate when not on ground
+    - behaviour from RL:
+      - follower cam: car in same spot on screen, slightly below middle.
         While car is on ground, stay behind car. When car not on ground, stay
         at same horizontal rotation as when car left the ground.
       - ball cam: always point at ball. Car should always be in same spot
@@ -15,7 +17,7 @@
   - only one double jump
   - prevent bouncing when hitting the ground on wheels
 
-# todo
+# maybe/later
 - do arcade car
 - wheel collider car
   - pain in the arse to get good settings

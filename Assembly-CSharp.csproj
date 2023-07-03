@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\WheelStudy\MeshWheelControl.cs" />
+     <Compile Include="Assets\Scripts\WheelStudy\ForwardCam.cs" />
      <Compile Include="Assets\Scripts\WheelSteerAngle.cs" />
      <Compile Include="Assets\Scripts\CamPlayerFollower.cs" />
      <Compile Include="Assets\Scripts\WheelStudy\WCCarController.cs" />
