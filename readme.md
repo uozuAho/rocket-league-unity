@@ -2,20 +2,21 @@
 
 # doing
 - do custom car physics
-  - follower cam
-    - do follower cam
-      - don't rotate when not on ground
-    - behaviour from RL:
-      - follower cam: car in same spot on screen, slightly below middle.
-        While car is on ground, stay behind car. When car not on ground, stay
-        at same horizontal rotation as when car left the ground.
-      - ball cam: always point at ball. Car should always be in same spot
-        on screen: slightly below middle
   - in air yaw
-    - max angular speed
-    - faster accel
+    - what's limiting in air angular momentum?
+    - limit it more?
+    - increase in air torque
   - only one double jump
   - prevent bouncing when hitting the ground on wheels
+- put custom car + cam into game
+- do ball cam
+
+# notes on RL cam behaviour
+- follower cam: car in same spot on screen, slightly below middle.
+  While car is on ground, stay behind car. When car not on ground, stay
+  at same horizontal rotation as when car left the ground.
+- ball cam: always point at ball. Car should always be in same spot
+  on screen: slightly below middle
 
 # maybe/later
 - do arcade car

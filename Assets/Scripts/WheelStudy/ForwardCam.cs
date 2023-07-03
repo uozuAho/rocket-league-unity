@@ -6,19 +6,25 @@ public class PlayerCam : MonoBehaviour
 
     private Vector3 _initialOffset;
     private Quaternion _initialRotation;
+    private CustomCarControl _carControl;
 
+    private Vector3 camOffset;
 
     void Start()
     {
         _initialOffset = transform.position;
         _initialRotation = transform.rotation;
+        _carControl = GameObject.Find("CustomCar").GetComponent<CustomCarControl>();
     }
 
     void LateUpdate()
     {
-        var offset = car.transform.TransformDirection(_initialOffset);
+        if (_carControl.IsOnGround)
+            camOffset = car.transform.TransformDirection(_initialOffset);
 
-        transform.position = car.transform.position + offset;
-        transform.rotation = car.transform.rotation * _initialRotation;
+        transform.position = car.transform.position + camOffset;
+
+        if (_carControl.IsOnGround)
+            transform.rotation = car.transform.rotation * _initialRotation;
     }
 }
