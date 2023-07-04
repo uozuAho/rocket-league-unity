@@ -1,15 +1,16 @@
 # My Rocket League clone
 
 # doing
-- make curve between ground + walls
-- make walls transparent-ish
 - ball cam
+- make curve between ground + walls
+  - need more modelling exp
 - add roof
 - custom car physics
   - forward/backward pitch in air
   - prevent bouncing when hitting the ground on wheels
 - flip
 - steer wheels
+- handbrake turn
 - spin wheels when moving
 - hold jump increases jump height
 
