@@ -1,13 +1,13 @@
 # My Rocket League clone
 
 # doing
-- fix car size
-- put wheels right next to car
 - make walls transparent-ish
 - custom car physics
   - forward/backward pitch in air
   - prevent bouncing when hitting the ground on wheels
 - flip
+- steer wheels
+- spin wheels when moving
 - hold jump increases jump height
 - do ball cam
 
