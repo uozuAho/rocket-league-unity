@@ -7,6 +7,7 @@ public class CustomCarControl : MonoBehaviour
     public float forwardFriction;
     public float sidewaysFriction;
     public float spinFriction;
+    public float spinDrag;
     public float jumpForce;
     public float turnSpeed;
     public float airYawForce;
@@ -18,6 +19,7 @@ public class CustomCarControl : MonoBehaviour
     private float turnInput;
     private bool jumpPressed;
     private float accelInput;
+    private bool hasDoubleJump = true;
 
     void Start()
     {
@@ -33,7 +35,15 @@ public class CustomCarControl : MonoBehaviour
 
         // jump - keydown doesn't register well in FixedUpdate
         if (jumpPressed)
-            _rb.AddForce(transform.up * jumpForce * 1000, ForceMode.Impulse);
+        {
+            if (IsOnGround)
+                _rb.AddForce(transform.up * jumpForce * 1000, ForceMode.Impulse);
+            else if (hasDoubleJump)
+            {
+                _rb.AddForce(transform.up * jumpForce * 1000, ForceMode.Impulse);
+                hasDoubleJump = false;
+            }
+        }
     }
 
     void FixedUpdate()
@@ -70,6 +80,10 @@ public class CustomCarControl : MonoBehaviour
         {
             _rb.AddTorque(-_rb.angularVelocity * spinFriction * 1000);
         }
+        else
+        {
+            _rb.AddTorque(-_rb.angularVelocity * spinDrag * 1000);
+        }
     }
 
     private void CheckGround()
@@ -85,6 +99,7 @@ public class CustomCarControl : MonoBehaviour
                 LayerMask.GetMask("Ground")))
         {
             IsOnGround = true;
+            hasDoubleJump = true;
             Debug.DrawRay(
                 _rayOrigin.transform.position,
                 transform.TransformDirection(Vector3.down) * rayLength, Color.red);

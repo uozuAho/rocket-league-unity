@@ -1,14 +1,12 @@
 # My Rocket League clone
 
 # doing
-- do custom car physics
-  - in air yaw
-    - what's limiting in air angular momentum?
-    - limit it more?
-    - increase in air torque
-  - only one double jump
-  - prevent bouncing when hitting the ground on wheels
 - put custom car + cam into game
+- custom car physics
+  - forward/backward pitch in air
+  - prevent bouncing when hitting the ground on wheels
+- flip
+- hold jump increases jump height
 - do ball cam
 
 # notes on RL cam behaviour

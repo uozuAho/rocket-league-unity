@@ -1085,9 +1085,10 @@ MonoBehaviour:
   forwardFriction: 1
   sidewaysFriction: 5
   spinFriction: 5
-  jumpForce: 10
+  spinDrag: 2.5
+  jumpForce: 8
   turnSpeed: 5
-  airYawForce: 5
+  airYawForce: 16
 --- !u!1 &1804367686
 GameObject:
   m_ObjectHideFlags: 0
