@@ -1,7 +1,10 @@
 # My Rocket League clone
 
 # doing
+- make curve between ground + walls
 - make walls transparent-ish
+- ball cam
+- add roof
 - custom car physics
   - forward/backward pitch in air
   - prevent bouncing when hitting the ground on wheels
@@ -9,7 +12,6 @@
 - steer wheels
 - spin wheels when moving
 - hold jump increases jump height
-- do ball cam
 
 # notes on RL cam behaviour
 - follower cam: car in same spot on screen, slightly below middle.
