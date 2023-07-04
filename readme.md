@@ -1,7 +1,9 @@
 # My Rocket League clone
 
 # doing
-- put custom car + cam into game
+- fix car size
+- put wheels right next to car
+- make walls transparent-ish
 - custom car physics
   - forward/backward pitch in air
   - prevent bouncing when hitting the ground on wheels
