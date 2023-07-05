@@ -1,11 +1,12 @@
 # My Rocket League clone
 
-# doing
+# to do
 - ball cam
+- handbrake turn
 - forward/backward pitch in air
 - flip
 - boost
-- handbrake turn
+- air roll
 - prevent bouncing when hitting the ground on wheels
 - make curve between ground + walls
   - need more modelling exp

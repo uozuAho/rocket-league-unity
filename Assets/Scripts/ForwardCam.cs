@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public class PlayerCam : MonoBehaviour
+/// <summary>
+/// The non-ballcam
+/// </summary>
+public class ForwardCam : MonoBehaviour
 {
     public GameObject car;
 
