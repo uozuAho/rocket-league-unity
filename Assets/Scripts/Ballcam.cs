@@ -3,6 +3,7 @@ using UnityEngine;
 public class Ballcam : MonoBehaviour
 {
     public GameObject car;
+    public GameObject ball;
 
     private Vector3 _initialOffset;
     private Quaternion _initialRotation;
@@ -19,12 +20,13 @@ public class Ballcam : MonoBehaviour
 
     void LateUpdate()
     {
-        if (_carControl.IsOnGround)
-            camOffset = car.transform.TransformDirection(_initialOffset);
+        var carToBall = (ball.transform.position - car.transform.position).normalized;
 
-        transform.position = car.transform.position + camOffset;
+        var x = carToBall.x * _initialOffset.x;
+        var y = _initialOffset.y;
+        var z = carToBall.z * _initialOffset.z;
 
-        if (_carControl.IsOnGround)
-            transform.rotation = car.transform.rotation * _initialRotation;
+        transform.position = car.transform.position + new Vector3(x, y, z);
+        transform.rotation = Quaternion.LookRotation(new Vector3(carToBall.x, _initialRotation.y, carToBall.z));
     }
 }

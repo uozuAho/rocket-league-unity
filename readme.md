@@ -19,8 +19,12 @@
 - follower cam: car in same spot on screen, slightly below middle.
   While car is on ground, stay behind car. When car not on ground, stay
   at same horizontal rotation as when car left the ground.
-- ball cam: always point at ball. Car should always be in same spot
-  on screen: slightly below middle
+- ball cam:
+  - always point at ball
+  - cam distance from car is always the same
+  - cam position is always opposite the ball
+  - camera pitch threshold: keep level until ball is level with car (?)
+  - todo: what does cam do when ball is above car and car is on ground?
 
 # maybe/later
 - do arcade car
