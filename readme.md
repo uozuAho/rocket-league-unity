@@ -1,7 +1,6 @@
 # My Rocket League clone
 
 # to do
-- ball cam
 - handbrake turn
 - forward/backward pitch in air
 - flip
@@ -14,6 +13,7 @@
 - visual: steer wheels
 - visual: spin wheels when moving
 - hold jump increases jump height
+- prevent getting stuck in/falling through ground & walls when crashing at high speed
 
 # notes on RL cam behaviour
 - follower cam: car in same spot on screen, slightly below middle.
