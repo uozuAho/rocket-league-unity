@@ -50,6 +50,7 @@
      <Compile Include="Assets\PlayerControls.cs" />
      <Compile Include="Assets\Scripts\CustomCarControl.cs" />
      <Compile Include="Assets\Scripts\Experiments\CamPlayerFollower.cs" />
+     <Compile Include="Assets\Scripts\Ballcam.cs" />
      <Compile Include="Assets\Scripts\Experiments\WCCarController.cs" />
      <Compile Include="Assets\Scripts\Experiments\PlayerControl.cs" />
      <Compile Include="Assets\Scripts\ForwardCam.cs" />
