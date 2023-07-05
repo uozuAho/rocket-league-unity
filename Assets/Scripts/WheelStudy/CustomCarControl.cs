@@ -16,10 +16,17 @@ public class CustomCarControl : MonoBehaviour
 
     private Rigidbody _rb;
     private GameObject _rayOrigin;
-    private float turnInput;
+    private PlayerControls _controls;
     private bool jumpPressed;
     private float accelInput;
     private bool hasDoubleJump = true;
+    private float joystickSteer;
+
+    void Awake()
+    {
+        _controls = new PlayerControls();
+        InitControls();
+    }
 
     void Start()
     {
@@ -27,22 +34,40 @@ public class CustomCarControl : MonoBehaviour
         _rayOrigin = GameObject.Find("RayOrigin");
     }
 
+    void InitControls()
+    {
+        _controls.Player.Jump.performed += ctx => Jump();
+        _controls.Player.Steer.performed += ctx => joystickSteer = ctx.ReadValue<float>();
+        _controls.Player.Steer.canceled += ctx => joystickSteer = 0f;
+    }
+
+    void OnEnable()
+    {
+        _controls.Player.Enable();
+    }
+
+    void OnDisable()
+    {
+        _controls.Player.Disable();
+    }
+
     void Update()
     {
-        turnInput = Input.GetAxis("Horizontal");
         jumpPressed = Input.GetKeyDown(KeyCode.Space);
         accelInput = Input.GetAxis("Vertical");
 
-        // jump - keydown doesn't register well in FixedUpdate
-        if (jumpPressed)
+        // note: keydown doesn't register well in FixedUpdate
+        if (jumpPressed) Jump();
+    }
+
+    private void Jump()
+    {
+        if (IsOnGround)
+            _rb.AddForce(transform.up * jumpForce * 1000, ForceMode.Impulse);
+        else if (hasDoubleJump)
         {
-            if (IsOnGround)
-                _rb.AddForce(transform.up * jumpForce * 1000, ForceMode.Impulse);
-            else if (hasDoubleJump)
-            {
-                _rb.AddForce(transform.up * jumpForce * 1000, ForceMode.Impulse);
-                hasDoubleJump = false;
-            }
+            _rb.AddForce(transform.up * jumpForce * 1000, ForceMode.Impulse);
+            hasDoubleJump = false;
         }
     }
 
@@ -54,10 +79,10 @@ public class CustomCarControl : MonoBehaviour
 
         // steering / air yaw
         if (IsOnGround)
-            transform.Rotate(transform.up, turnInput * forwardSpeed * turnSpeed * Time.deltaTime);
+            transform.Rotate(transform.up, joystickSteer * forwardSpeed * turnSpeed * Time.deltaTime);
         else
         {
-            _rb.AddTorque(transform.up * turnInput * airYawForce * 1000);
+            _rb.AddTorque(transform.up * joystickSteer * airYawForce * 1000);
         }
 
         // acceleration
