@@ -49,10 +49,10 @@
      <Compile Include="Assets\Scripts\WheelStudy\ForwardCam.cs" />
      <Compile Include="Assets\Scripts\WheelSteerAngle.cs" />
      <Compile Include="Assets\Scripts\CamPlayerFollower.cs" />
+     <Compile Include="Assets\PlayerControls.cs" />
      <Compile Include="Assets\Scripts\WheelStudy\WCCarController.cs" />
      <Compile Include="Assets\Scripts\WheelStudy\CustomCarControl.cs" />
      <Compile Include="Assets\Scripts\PlayerControl.cs" />
-     <Compile Include="Assets\Scripts\PlayerControls.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets\Materials" />
      <Folder Include="Assets\Scenes" />

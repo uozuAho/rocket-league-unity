@@ -44,6 +44,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Throttle"",
+                    ""type"": ""Button"",
+                    ""id"": ""7a930eef-fd0f-44ac-a1ca-953fb6253ad9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -90,6 +99,39 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Steer"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""b5916358-6136-46ac-ad93-a6509441e544"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Throttle"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""bcbc828d-e9ed-4a16-a765-3c0cd761b367"",
+                    ""path"": ""<XInputController>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Throttle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""86bfee24-527d-44e8-99af-09bc488608da"",
+                    ""path"": ""<XInputController>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Throttle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -100,6 +142,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Steer = m_Player.FindAction("Steer", throwIfNotFound: true);
+        m_Player_Throttle = m_Player.FindAction("Throttle", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -163,12 +206,14 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Steer;
+    private readonly InputAction m_Player_Throttle;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
         public PlayerActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Steer => m_Wrapper.m_Player_Steer;
+        public InputAction @Throttle => m_Wrapper.m_Player_Throttle;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -184,6 +229,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Steer.started += instance.OnSteer;
             @Steer.performed += instance.OnSteer;
             @Steer.canceled += instance.OnSteer;
+            @Throttle.started += instance.OnThrottle;
+            @Throttle.performed += instance.OnThrottle;
+            @Throttle.canceled += instance.OnThrottle;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -194,6 +242,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Steer.started -= instance.OnSteer;
             @Steer.performed -= instance.OnSteer;
             @Steer.canceled -= instance.OnSteer;
+            @Throttle.started -= instance.OnThrottle;
+            @Throttle.performed -= instance.OnThrottle;
+            @Throttle.canceled -= instance.OnThrottle;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -215,5 +266,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     {
         void OnJump(InputAction.CallbackContext context);
         void OnSteer(InputAction.CallbackContext context);
+        void OnThrottle(InputAction.CallbackContext context);
     }
 }

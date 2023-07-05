@@ -18,7 +18,7 @@ public class CustomCarControl : MonoBehaviour
     private GameObject _rayOrigin;
     private PlayerControls _controls;
     private bool jumpPressed;
-    private float accelInput;
+    private float throttleInput;
     private bool hasDoubleJump = true;
     private float joystickSteer;
 
@@ -37,8 +37,12 @@ public class CustomCarControl : MonoBehaviour
     void InitControls()
     {
         _controls.Player.Jump.performed += ctx => Jump();
+
         _controls.Player.Steer.performed += ctx => joystickSteer = ctx.ReadValue<float>();
         _controls.Player.Steer.canceled += ctx => joystickSteer = 0f;
+
+        _controls.Player.Throttle.performed += ctx => throttleInput = ctx.ReadValue<float>();
+        _controls.Player.Throttle.canceled += ctx => throttleInput = 0f;
     }
 
     void OnEnable()
@@ -53,11 +57,6 @@ public class CustomCarControl : MonoBehaviour
 
     void Update()
     {
-        jumpPressed = Input.GetKeyDown(KeyCode.Space);
-        accelInput = Input.GetAxis("Vertical");
-
-        // note: keydown doesn't register well in FixedUpdate
-        if (jumpPressed) Jump();
     }
 
     private void Jump()
@@ -87,7 +86,7 @@ public class CustomCarControl : MonoBehaviour
 
         // acceleration
         if (IsOnGround)
-            _rb.AddForce(transform.forward * accelInput * accelPower * 1000);
+            _rb.AddForce(transform.forward * throttleInput * accelPower * 1000);
 
         // forward deceleration due to friction
         if (IsOnGround)

@@ -1,23 +1,17 @@
 # My Rocket League clone
 
 # doing
-- xbox controls
-  - vids
-    - https://www.youtube.com/watch?v=p-3S73MaDP8
-  - rtrig accel
-  - a jump
-  - vertical input != forward/reverse
-- custom car physics
-  - forward/backward pitch in air
-  - prevent bouncing when hitting the ground on wheels
 - ball cam
+- forward/backward pitch in air
+- flip
+- boost
+- handbrake turn
+- prevent bouncing when hitting the ground on wheels
 - make curve between ground + walls
   - need more modelling exp
 - add roof
-- flip
-- steer wheels
-- handbrake turn
-- spin wheels when moving
+- visual: steer wheels
+- visual: spin wheels when moving
 - hold jump increases jump height
 
 # notes on RL cam behaviour
