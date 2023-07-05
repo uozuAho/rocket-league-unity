@@ -2,6 +2,7 @@
 
 # to do
 - handbrake turn
+  - look at how others do handbrake
 - forward/backward pitch in air
 - flip
 - boost

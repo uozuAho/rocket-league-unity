@@ -21,6 +21,7 @@ public class CustomCarControl : MonoBehaviour
     private float throttleInput;
     private bool hasDoubleJump = true;
     private float joystickSteer;
+    public bool handbrakeOn = false;
 
     void Awake()
     {
@@ -43,6 +44,9 @@ public class CustomCarControl : MonoBehaviour
 
         _controls.Player.Throttle.performed += ctx => throttleInput = ctx.ReadValue<float>();
         _controls.Player.Throttle.canceled += ctx => throttleInput = 0f;
+
+        _controls.Player.Powerslide.performed += ctx => handbrakeOn = true;
+        _controls.Player.Powerslide.canceled += ctx => handbrakeOn = false;
     }
 
     void OnEnable()
@@ -93,7 +97,7 @@ public class CustomCarControl : MonoBehaviour
             _rb.AddForce(-transform.forward * forwardSpeed * forwardFriction * 1000);
 
         // sideways deceleration due to friction
-        if (IsOnGround)
+        if (IsOnGround && !handbrakeOn)
         {
             var sidewaysSpeed = Vector3.Dot(_rb.velocity, transform.right);
             _rb.AddForce(-transform.right * sidewaysSpeed * sidewaysFriction * 1000);
