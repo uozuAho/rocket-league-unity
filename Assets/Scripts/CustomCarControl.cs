@@ -16,6 +16,7 @@ public class CustomCarControl : MonoBehaviour
 
     private Rigidbody _rb;
     private GameObject _rayOrigin;
+    private GameObject _driftOrigin;
     private PlayerControls _controls;
     private bool jumpPressed;
     private float throttleInput;
@@ -33,6 +34,7 @@ public class CustomCarControl : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _rayOrigin = GameObject.Find("RayOrigin");
+        _driftOrigin = GameObject.Find("DriftOrigin");
     }
 
     void InitControls()
@@ -97,10 +99,17 @@ public class CustomCarControl : MonoBehaviour
             _rb.AddForce(-transform.forward * forwardSpeed * forwardFriction * 1000);
 
         // sideways deceleration due to friction
-        if (IsOnGround && !handbrakeOn)
+        if (IsOnGround)
         {
             var sidewaysSpeed = Vector3.Dot(_rb.velocity, transform.right);
-            _rb.AddForce(-transform.right * sidewaysSpeed * sidewaysFriction * 1000);
+            var friction = -transform.right * sidewaysSpeed * sidewaysFriction * 1000;
+            _rb.AddForce(friction);
+
+            if (handbrakeOn)
+            {
+                var driftForce = -friction / 2;
+                _rb.AddForceAtPosition(driftForce, _driftOrigin.transform.position);
+            }
         }
 
         // spin friction
