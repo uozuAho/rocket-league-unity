@@ -1,9 +1,8 @@
 # My Rocket League clone
 
 # to do
-- boost
-- flip
 - air roll
+- flip
 - prevent getting stuck in walls when crashing at high speed
 - flip car when on back
 - prevent bouncing when hitting the ground on wheels

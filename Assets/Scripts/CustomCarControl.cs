@@ -11,6 +11,7 @@ public class CustomCarControl : MonoBehaviour
     public float jumpForce;
     public float turnSpeed;
     public float airYawForce;
+    public float boostForce;
 
     public bool IsOnGround { get; private set; }
 
@@ -132,6 +133,9 @@ public class CustomCarControl : MonoBehaviour
             _rb.AddTorque(-_rb.angularVelocity * spinFriction * 1000);
         else
             _rb.AddTorque(-_rb.angularVelocity * spinDrag * 1000);
+
+        if (_boostFire.enabled)
+            _rb.AddForce(transform.forward * boostForce * 1000);
     }
 
     private void CheckGround()
