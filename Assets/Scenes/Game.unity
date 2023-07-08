@@ -832,6 +832,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 5634254144996430948, guid: ac4187ec71142cf4e87319a8de50dfc2, type: 3}
+      propertyPath: turnSpeed
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 7640947547614050437, guid: ac4187ec71142cf4e87319a8de50dfc2, type: 3}
       propertyPath: m_RootOrder
       value: 3
