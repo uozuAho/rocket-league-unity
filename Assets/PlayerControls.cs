@@ -46,6 +46,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Pitch"",
+                    ""type"": ""Button"",
+                    ""id"": ""f3ddb8fa-b70b-492b-ba8b-7bb0606d9a92"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Throttle"",
                     ""type"": ""Button"",
                     ""id"": ""7a930eef-fd0f-44ac-a1ca-953fb6253ad9"",
@@ -152,6 +161,39 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Powerslide"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""1b633b43-3b44-4121-afc8-799ce6902d6b"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pitch"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""2cd1300f-f443-445e-b01f-c6b92fd734a4"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pitch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""6c9b6e1d-656f-4ce8-a33b-801bfc509ab3"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pitch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -162,6 +204,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Steer = m_Player.FindAction("Steer", throwIfNotFound: true);
+        m_Player_Pitch = m_Player.FindAction("Pitch", throwIfNotFound: true);
         m_Player_Throttle = m_Player.FindAction("Throttle", throwIfNotFound: true);
         m_Player_Powerslide = m_Player.FindAction("Powerslide", throwIfNotFound: true);
     }
@@ -227,6 +270,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Steer;
+    private readonly InputAction m_Player_Pitch;
     private readonly InputAction m_Player_Throttle;
     private readonly InputAction m_Player_Powerslide;
     public struct PlayerActions
@@ -235,6 +279,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public PlayerActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Steer => m_Wrapper.m_Player_Steer;
+        public InputAction @Pitch => m_Wrapper.m_Player_Pitch;
         public InputAction @Throttle => m_Wrapper.m_Player_Throttle;
         public InputAction @Powerslide => m_Wrapper.m_Player_Powerslide;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -252,6 +297,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Steer.started += instance.OnSteer;
             @Steer.performed += instance.OnSteer;
             @Steer.canceled += instance.OnSteer;
+            @Pitch.started += instance.OnPitch;
+            @Pitch.performed += instance.OnPitch;
+            @Pitch.canceled += instance.OnPitch;
             @Throttle.started += instance.OnThrottle;
             @Throttle.performed += instance.OnThrottle;
             @Throttle.canceled += instance.OnThrottle;
@@ -268,6 +316,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Steer.started -= instance.OnSteer;
             @Steer.performed -= instance.OnSteer;
             @Steer.canceled -= instance.OnSteer;
+            @Pitch.started -= instance.OnPitch;
+            @Pitch.performed -= instance.OnPitch;
+            @Pitch.canceled -= instance.OnPitch;
             @Throttle.started -= instance.OnThrottle;
             @Throttle.performed -= instance.OnThrottle;
             @Throttle.canceled -= instance.OnThrottle;
@@ -295,6 +346,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     {
         void OnJump(InputAction.CallbackContext context);
         void OnSteer(InputAction.CallbackContext context);
+        void OnPitch(InputAction.CallbackContext context);
         void OnThrottle(InputAction.CallbackContext context);
         void OnPowerslide(InputAction.CallbackContext context);
     }

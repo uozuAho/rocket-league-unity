@@ -1,7 +1,6 @@
 # My Rocket League clone
 
 # to do
-- forward/backward pitch in air
 - flip
 - boost
 - air roll

@@ -22,6 +22,7 @@ public class CustomCarControl : MonoBehaviour
     private float throttleInput;
     private bool hasDoubleJump = true;
     private float joystickSteer;
+    private float joystickPitch;
     public bool handbrakeOn = false;
 
     void Awake()
@@ -43,6 +44,9 @@ public class CustomCarControl : MonoBehaviour
 
         _controls.Player.Steer.performed += ctx => joystickSteer = ctx.ReadValue<float>();
         _controls.Player.Steer.canceled += ctx => joystickSteer = 0f;
+
+        _controls.Player.Pitch.performed += ctx => joystickPitch = ctx.ReadValue<float>();
+        _controls.Player.Pitch.canceled += ctx => joystickPitch = 0f;
 
         _controls.Player.Throttle.performed += ctx => throttleInput = ctx.ReadValue<float>();
         _controls.Player.Throttle.canceled += ctx => throttleInput = 0f;
@@ -90,6 +94,12 @@ public class CustomCarControl : MonoBehaviour
             _rb.AddTorque(transform.up * joystickSteer * airYawForce * 1000);
         }
 
+        // air pitch
+        if (!IsOnGround)
+        {
+            _rb.AddTorque(transform.right * joystickPitch * airYawForce * 1000);
+        }
+
         // acceleration
         if (IsOnGround)
             _rb.AddForce(transform.forward * throttleInput * accelPower * 1000);
@@ -114,13 +124,9 @@ public class CustomCarControl : MonoBehaviour
 
         // spin friction
         if (IsOnGround)
-        {
             _rb.AddTorque(-_rb.angularVelocity * spinFriction * 1000);
-        }
         else
-        {
             _rb.AddTorque(-_rb.angularVelocity * spinDrag * 1000);
-        }
     }
 
     private void CheckGround()
