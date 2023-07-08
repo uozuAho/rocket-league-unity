@@ -71,6 +71,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Boost"",
+                    ""type"": ""Button"",
+                    ""id"": ""4de52ae2-1ce1-480d-8c95-d53249655577"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -194,6 +203,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Pitch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4cb8e366-1c57-4c26-a7d4-3f55b59c1712"",
+                    ""path"": ""<XInputController>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Boost"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -207,6 +227,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_Pitch = m_Player.FindAction("Pitch", throwIfNotFound: true);
         m_Player_Throttle = m_Player.FindAction("Throttle", throwIfNotFound: true);
         m_Player_Powerslide = m_Player.FindAction("Powerslide", throwIfNotFound: true);
+        m_Player_Boost = m_Player.FindAction("Boost", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -273,6 +294,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Pitch;
     private readonly InputAction m_Player_Throttle;
     private readonly InputAction m_Player_Powerslide;
+    private readonly InputAction m_Player_Boost;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -282,6 +304,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Pitch => m_Wrapper.m_Player_Pitch;
         public InputAction @Throttle => m_Wrapper.m_Player_Throttle;
         public InputAction @Powerslide => m_Wrapper.m_Player_Powerslide;
+        public InputAction @Boost => m_Wrapper.m_Player_Boost;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -306,6 +329,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Powerslide.started += instance.OnPowerslide;
             @Powerslide.performed += instance.OnPowerslide;
             @Powerslide.canceled += instance.OnPowerslide;
+            @Boost.started += instance.OnBoost;
+            @Boost.performed += instance.OnBoost;
+            @Boost.canceled += instance.OnBoost;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -325,6 +351,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Powerslide.started -= instance.OnPowerslide;
             @Powerslide.performed -= instance.OnPowerslide;
             @Powerslide.canceled -= instance.OnPowerslide;
+            @Boost.started -= instance.OnBoost;
+            @Boost.performed -= instance.OnBoost;
+            @Boost.canceled -= instance.OnBoost;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -349,5 +378,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnPitch(InputAction.CallbackContext context);
         void OnThrottle(InputAction.CallbackContext context);
         void OnPowerslide(InputAction.CallbackContext context);
+        void OnBoost(InputAction.CallbackContext context);
     }
 }

@@ -17,6 +17,7 @@ public class CustomCarControl : MonoBehaviour
     private Rigidbody _rb;
     private GameObject _rayOrigin;
     private GameObject _driftOrigin;
+    private MeshRenderer _boostFire;
     private PlayerControls _controls;
     private bool jumpPressed;
     private float throttleInput;
@@ -36,11 +37,15 @@ public class CustomCarControl : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         _rayOrigin = GameObject.Find("RayOrigin");
         _driftOrigin = GameObject.Find("DriftOrigin");
+        _boostFire = GameObject.Find("BoostFire").GetComponent<MeshRenderer>();
     }
 
     void InitControls()
     {
         _controls.Player.Jump.performed += ctx => Jump();
+
+        _controls.Player.Boost.performed += ctx => _boostFire.enabled = true;
+        _controls.Player.Boost.canceled += ctx => _boostFire.enabled = false;
 
         _controls.Player.Steer.performed += ctx => joystickSteer = ctx.ReadValue<float>();
         _controls.Player.Steer.canceled += ctx => joystickSteer = 0f;
