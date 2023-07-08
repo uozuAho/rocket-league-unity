@@ -3,6 +3,7 @@
 # to do
 - air roll
 - flip
+- switch between ball/car cam
 - prevent getting stuck in walls when crashing at high speed
 - flip car when on back
 - prevent bouncing when hitting the ground on wheels
