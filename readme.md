@@ -1,15 +1,16 @@
 # My Rocket League clone
 
 # to do
-- prevent getting stuck in walls when crashing at high speed
 - forward/backward pitch in air
 - flip
 - boost
 - air roll
+- prevent getting stuck in walls when crashing at high speed
 - prevent bouncing when hitting the ground on wheels
 - make curve between ground + walls
   - need more modelling exp
 - add roof
+- fix ballcam to keep car in view
 - visual: steer wheels
 - visual: spin wheels when moving
 - hold jump increases jump height
