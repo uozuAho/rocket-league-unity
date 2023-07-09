@@ -25,7 +25,8 @@ public class CustomCarControl : MonoBehaviour
     private bool hasDoubleJump = true;
     private float joystickSteer;
     private float joystickPitch;
-    public bool handbrakeOn = false;
+    private float airRoll;
+    private bool handbrakeOn = false;
 
     void Awake()
     {
@@ -54,6 +55,12 @@ public class CustomCarControl : MonoBehaviour
         _controls.Player.Pitch.performed += ctx => joystickPitch = ctx.ReadValue<float>();
         _controls.Player.Pitch.canceled += ctx => joystickPitch = 0f;
 
+        _controls.Player.AirRollLeft.performed += ctx => airRoll = -1f;
+        _controls.Player.AirRollLeft.canceled += ctx => airRoll = 0f;
+
+        _controls.Player.AirRollRight.performed += ctx => airRoll = 1f;
+        _controls.Player.AirRollRight.canceled += ctx => airRoll = 0f;
+
         _controls.Player.Throttle.performed += ctx => throttleInput = ctx.ReadValue<float>();
         _controls.Player.Throttle.canceled += ctx => throttleInput = 0f;
 
@@ -81,8 +88,19 @@ public class CustomCarControl : MonoBehaviour
             _rb.AddForce(transform.up * jumpForce * 1000, ForceMode.Impulse);
         else if (hasDoubleJump)
         {
-            _rb.AddForce(transform.up * jumpForce * 1000, ForceMode.Impulse);
             hasDoubleJump = false;
+
+            if (joystickPitch > 0.1)
+            {
+                // flip
+                _rb.AddForce(transform.forward * jumpForce * 1000, ForceMode.Impulse);
+                _rb.AddTorque(transform.right * jumpForce * 2000000, ForceMode.Impulse);
+            }
+            else
+            {
+                // straight jump
+                _rb.AddForce(transform.up * jumpForce * 1000, ForceMode.Impulse);
+            }
         }
     }
 
@@ -104,6 +122,13 @@ public class CustomCarControl : MonoBehaviour
         if (!IsOnGround)
         {
             _rb.AddTorque(transform.right * joystickPitch * airYawForce * 1000);
+        }
+
+        // air roll
+        if (!IsOnGround)
+        {
+            // todo: why does this need to be backwards to work?
+            _rb.AddTorque(-transform.forward * airRoll * airYawForce * 500);
         }
 
         // acceleration

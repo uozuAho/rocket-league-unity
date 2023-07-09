@@ -1,9 +1,11 @@
 # My Rocket League clone
 
 # to do
-- air roll
 - flip
+    - why does there seem to be high angular drag?
 - switch between ball/car cam
+- air drag: max in air speed is too high
+- right stick cam look
 - prevent getting stuck in walls when crashing at high speed
 - flip car when on back
 - prevent bouncing when hitting the ground on wheels

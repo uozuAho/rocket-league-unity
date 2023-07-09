@@ -80,6 +80,24 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AirRollLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""041d1849-608c-4e29-af89-7d750bb4eb32"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AirRollRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""9ec6d45c-3268-40a5-ae05-734acff660ff"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -214,6 +232,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Boost"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f170ed85-3700-4034-8b38-974013483286"",
+                    ""path"": ""<XInputController>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AirRollLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""43b285ec-dd1c-4346-a64c-90fa9004a24d"",
+                    ""path"": ""<XInputController>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AirRollRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -228,6 +268,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_Throttle = m_Player.FindAction("Throttle", throwIfNotFound: true);
         m_Player_Powerslide = m_Player.FindAction("Powerslide", throwIfNotFound: true);
         m_Player_Boost = m_Player.FindAction("Boost", throwIfNotFound: true);
+        m_Player_AirRollLeft = m_Player.FindAction("AirRollLeft", throwIfNotFound: true);
+        m_Player_AirRollRight = m_Player.FindAction("AirRollRight", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -295,6 +337,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Throttle;
     private readonly InputAction m_Player_Powerslide;
     private readonly InputAction m_Player_Boost;
+    private readonly InputAction m_Player_AirRollLeft;
+    private readonly InputAction m_Player_AirRollRight;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -305,6 +349,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Throttle => m_Wrapper.m_Player_Throttle;
         public InputAction @Powerslide => m_Wrapper.m_Player_Powerslide;
         public InputAction @Boost => m_Wrapper.m_Player_Boost;
+        public InputAction @AirRollLeft => m_Wrapper.m_Player_AirRollLeft;
+        public InputAction @AirRollRight => m_Wrapper.m_Player_AirRollRight;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -332,6 +378,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Boost.started += instance.OnBoost;
             @Boost.performed += instance.OnBoost;
             @Boost.canceled += instance.OnBoost;
+            @AirRollLeft.started += instance.OnAirRollLeft;
+            @AirRollLeft.performed += instance.OnAirRollLeft;
+            @AirRollLeft.canceled += instance.OnAirRollLeft;
+            @AirRollRight.started += instance.OnAirRollRight;
+            @AirRollRight.performed += instance.OnAirRollRight;
+            @AirRollRight.canceled += instance.OnAirRollRight;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -354,6 +406,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Boost.started -= instance.OnBoost;
             @Boost.performed -= instance.OnBoost;
             @Boost.canceled -= instance.OnBoost;
+            @AirRollLeft.started -= instance.OnAirRollLeft;
+            @AirRollLeft.performed -= instance.OnAirRollLeft;
+            @AirRollLeft.canceled -= instance.OnAirRollLeft;
+            @AirRollRight.started -= instance.OnAirRollRight;
+            @AirRollRight.performed -= instance.OnAirRollRight;
+            @AirRollRight.canceled -= instance.OnAirRollRight;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -379,5 +437,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnThrottle(InputAction.CallbackContext context);
         void OnPowerslide(InputAction.CallbackContext context);
         void OnBoost(InputAction.CallbackContext context);
+        void OnAirRollLeft(InputAction.CallbackContext context);
+        void OnAirRollRight(InputAction.CallbackContext context);
     }
 }
