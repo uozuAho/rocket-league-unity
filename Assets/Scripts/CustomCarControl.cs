@@ -12,6 +12,8 @@ public class CustomCarControl : MonoBehaviour
     public float turnSpeed;
     public float airYawForce;
     public float boostForce;
+    public float flipBoostForce;
+    public float flipTorque;
 
     public bool IsOnGround { get; private set; }
 
@@ -93,8 +95,8 @@ public class CustomCarControl : MonoBehaviour
             if (joystickPitch > 0.1)
             {
                 // flip
-                _rb.AddForce(transform.forward * jumpForce * 1000, ForceMode.Impulse);
-                _rb.AddTorque(transform.right * jumpForce * 2000000, ForceMode.Impulse);
+                _rb.AddForce(transform.forward * flipBoostForce * 1000, ForceMode.Impulse);
+                _rb.AddTorque(transform.right * flipTorque * 1000, ForceMode.Impulse);
             }
             else
             {

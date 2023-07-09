@@ -2,7 +2,9 @@
 
 # to do
 - flip
-    - why does there seem to be high angular drag?
+    - play with force/drag
+    - implement other directions
+    - cancel vertical velocity?
 - switch between ball/car cam
 - air drag: max in air speed is too high
 - right stick cam look
