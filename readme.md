@@ -1,11 +1,17 @@
 # My Rocket League clone
 
-Just a project to learn Unity.
+Just a project to learn Unity. Work in progress. Controls are with a gamepad,
+similar to standard rocket league controls.
+
+![](./img/gameplay.png)
 
 # setup
 - install Unity 2022.3 LTS
 - clone this repo
 - open the repo directory with unity hub
+- open the 'Game' scene in the project window
+- click play
+- have fun!
 
 # to do
 - flip
