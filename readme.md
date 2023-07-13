@@ -1,12 +1,21 @@
 # My Rocket League clone
 
+Just a project to learn Unity.
+
+# setup
+- install Unity 2022.3 LTS
+- clone this repo
+- open the repo directory with unity hub
+
 # to do
 - flip
-    - play with force/drag
     - implement other directions
+    - how does flip boost relate to car & joystick position?
+    - play with force/drag
     - cancel vertical velocity?
 - switch between ball/car cam
 - air drag: max in air speed is too high
+- increase turn speed at lower car speeds
 - right stick cam look
 - prevent getting stuck in walls when crashing at high speed
 - flip car when on back

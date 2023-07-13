@@ -101,6 +101,7 @@ public class CustomCarControl : MonoBehaviour
             else
             {
                 // straight jump
+                // todo: what happens when car is not upright?
                 _rb.AddForce(transform.up * jumpForce * 1000, ForceMode.Impulse);
             }
         }
